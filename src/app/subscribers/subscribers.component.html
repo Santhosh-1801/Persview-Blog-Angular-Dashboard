@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow-effect bg-secondary-theme">
+                <div class="card-body text-center">
+                    <h3 class="text-theme-center">All Subscribers</h3>
+                    <p>From here you can manage your blog subscribers</p>
+                    <button class="btn btn-warning ml-2" routerLink="/">Back to Dashboard</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive"> <!-- Ensure table is responsive -->
+                        <table class="table row-border hover" style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Actions</th> <!-- Adjusted vertical alignment -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let subscriber of subscribersArray; let i=index">
+                                    <td>{{i}}</td>
+                                    <td>{{subscriber.data.name}}</td> <!-- Adjust max-width as needed -->
+                                    <td>{{subscriber.data.email}}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-danger ml-2" (click)="onDelete(subscriber.id)">Delete</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

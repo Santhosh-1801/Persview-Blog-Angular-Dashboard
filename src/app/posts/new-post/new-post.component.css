@@ -1,0 +1,9 @@
+.btn-theme{
+    height: 58px;
+    border: none;
+    font-size: 13px;
+    background-color: var(--primary-color);
+}
+.img-preview{
+    height: 250px;
+}

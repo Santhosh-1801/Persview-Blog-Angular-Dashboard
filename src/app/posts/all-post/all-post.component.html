@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow-effect bg-secondary-theme">
+                <div class="card-body text-center">
+                    <h3 class="text-theme-center">All Blog Posts</h3>
+                    <p>From here you can manage your blog posts.</p>
+                    <button class="btn btn-info bg-theme" routerLink="/posts/new">Add New Post</button>
+                    <button class="btn btn-warning ml-2" routerLink="/">Back to Dashboard</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive"> <!-- Ensure table is responsive -->
+                        <table class="table row-border hover" style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Post Image</th>
+                                    <th>Title</th>
+                                    <th>Excerpt</th>
+                                    <th>Category</th>
+                                    <th>Date</th>
+                                    <th>Actions</th> <!-- Adjusted vertical alignment -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let post of postArray; let i=index">
+                                    <td>{{i+1}}</td>
+                                    <td style="vertical-align: middle;"><img src="{{post.data.postImgPath}}" class="img img-fluid" style="max-width: 200px;"></td> <!-- Adjust max-width as needed -->
+                                    <td>{{post.data.title}}</td>
+                                    <td><div style="max-width: 300px;">{{post.data.excerpt}}</div></td> <!-- Adjust max-width as needed -->
+                                    <td>{{post.data.category.category}}</td>
+                                    <td>{{post.data.createdAt.toMillis() | date}}</td>
+                                    <td style="vertical-align: middle;">
+                                        <button class="btn btn-sm btn-warning" routerLink="/posts/new" [queryParams]="{id:post.id}" style="margin: 0 5px;">Edit</button>
+                                        <button class="btn btn-sm btn-danger" style="margin: 0 5px;" (click)="onDelete(post.data.postImgPath,post.id)">Delete</button>
+                                        <button *ngIf="!post.data.isFeatured"class="btn btn-sm btn-success" style="margin: 0 5px;margin-top: 5px;" (click)="onFeatured(post.id,true)">Mark Featured</button>
+                                        <button *ngIf="post.data.isFeatured" class="btn btn-sm btn-info" style="margin: 0 5px;margin-top: 5px;" (click)="onFeatured(post.id,false)">Remove Featured</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
